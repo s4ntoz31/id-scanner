@@ -18,6 +18,10 @@ dist-ssr
 *.png
 *.webp
 
+# Push scripts (local only)
+push.sh
+push.bat
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
