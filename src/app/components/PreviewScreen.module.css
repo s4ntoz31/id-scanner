@@ -1,0 +1,167 @@
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md);
+  align-items: center;
+}
+
+.canvasContainer,
+.canvasWrapper {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(202, 138, 4, 0.08) 0%, transparent 50%),
+    hsl(var(--card));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+  max-width: 100%;
+  overflow: auto;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.canvasContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(202, 138, 4, 0.2), transparent);
+}
+
+.canvas {
+  display: block;
+  width: 280px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.loading {
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-md);
+  padding-top: var(--space-xl);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.resetBtn {
+  padding: 14px 28px;
+  background: transparent;
+  color: hsl(var(--muted-foreground));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 48px;
+}
+
+.resetBtn:hover {
+  border-color: hsl(var(--foreground));
+  color: hsl(var(--foreground));
+}
+
+.exportBtn {
+  padding: 14px 28px;
+  background: transparent;
+  color: hsl(var(--accent));
+  border: 1px solid hsl(var(--accent));
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 48px;
+}
+
+.exportBtn:hover:not(:disabled) {
+  background: rgba(202, 138, 4, 0.1);
+}
+
+.exportBtnPrimary {
+  padding: 14px 28px;
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 48px;
+}
+
+.exportBtnPrimary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(202, 138, 4, 0.4);
+}
+
+.exportBtn:disabled,
+.exportBtnPrimary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .actions {
+    flex-direction: column;
+    width: 100%;
+    padding: var(--space-md);
+  }
+  
+  .resetBtn,
+  .exportBtn,
+  .exportBtnPrimary {
+    width: 100%;
+  }
+}
+
+.signatureOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.canvasWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.signatureDraggable {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+}
+
+.signatureDraggable:active {
+  cursor: grabbing;
+}
+
+.signatureImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.hint {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: var(--space-md);
+  opacity: 0.8;
+}

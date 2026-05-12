@@ -1,0 +1,94 @@
+.container {
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 320px;
+  margin: 0 auto;
+  gap: 2px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: hsl(var(--card));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.dot svg {
+  width: 12px;
+  height: 12px;
+}
+
+.line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(202, 138, 4, 0.15), rgba(202, 138, 4, 0.05));
+  min-width: 20px;
+  transition: all 0.3s ease;
+}
+
+.step.active .dot {
+  border-color: rgba(202, 138, 4, 0.4);
+  color: hsl(var(--accent));
+  box-shadow: 
+    0 0 0 3px rgba(202, 138, 4, 0.1),
+    0 2px 8px rgba(202, 138, 4, 0.15);
+}
+
+.step.active .line {
+  background: linear-gradient(90deg, hsl(var(--accent)), rgba(202, 138, 4, 0.15));
+}
+
+.step.completed .dot {
+  background: rgba(202, 138, 4, 0.15);
+  border-color: rgba(202, 138, 4, 0.3);
+  color: hsl(var(--accent));
+}
+
+.step.completed .line {
+  background: rgba(202, 138, 4, 0.2);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: var(--space-md) var(--space-sm) var(--space-sm);
+  }
+  
+  .steps {
+    max-width: 280px;
+  }
+  
+  .dot {
+    width: 24px;
+    height: 24px;
+    font-size: 0.65rem;
+  }
+  
+  .dot svg {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .line {
+    min-width: 12px;
+  }
+}
