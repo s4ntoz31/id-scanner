@@ -97,18 +97,19 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: 14px 32px;
+  padding: 16px 36px;
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   border: none;
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: hsl(var(--bg));
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   z-index: 1;
-  min-height: 48px;
+  min-height: 52px;
+  letter-spacing: 0.5px;
 }
 
 .browseBtn:hover {
@@ -126,22 +127,28 @@
   justify-content: center;
   gap: var(--space-sm);
   margin-top: var(--space-md);
-  padding: 12px 24px;
-  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-  border: none;
+  padding: 14px 28px;
+  background: transparent;
+  border: 1px solid hsl(var(--stroke));
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: hsl(var(--bg));
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: hsl(var(--text));
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  min-height: 48px;
 }
 
 .cameraBtn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
+  border-color: #89AACC;
+  background: rgba(137, 170, 204, 0.1);
+}
+
+.cameraBtn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .hiddenInput {

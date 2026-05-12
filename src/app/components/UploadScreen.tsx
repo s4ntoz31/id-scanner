@@ -62,7 +62,7 @@ export function UploadScreen({ onUpload, label }: UploadScreenProps) {
           <line x1="8" y1="22" x2="40" y2="22" stroke="currentColor" strokeOpacity="0.3" strokeDasharray="4 4" />
           <circle cx="15" cy="14" r="3" fill="currentColor" stroke="none" opacity="0.6" />
         </svg>
-        <h3 className={styles.dropTitle}>📷 Upload {label}</h3>
+        <h3 className={styles.dropTitle}>Upload {label}</h3>
         <p className={styles.dropText}>Drag & drop, click to browse, or take photo</p>
         <input
           type="file"

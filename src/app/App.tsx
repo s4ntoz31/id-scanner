@@ -153,7 +153,7 @@ export default function App() {
     <div className="app-container">
       <div className="app-content" role="main">
         <div className="brand-header">
-          <span>Made Easy ID scan copy</span>
+          <span>Made Easy ID Scan Copy, Instant Printable</span>
         </div>
         <ProgressBar currentStep={currentStepIndex} totalSteps={STEP_ORDER.length} />
         
