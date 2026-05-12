@@ -2,12 +2,13 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import type { Step, Point } from './types';
 import { STEP_ORDER, STEP_LABELS } from './types';
 import { WorkScreen } from './components/WorkScreen';
+import { LandingScreen } from './components/LandingScreen';
 import { PreviewScreen } from './components/PreviewScreen';
 import { ProgressBar } from './components/ProgressBar';
 import './styles/app.css';
 
 export default function App() {
-  const [step, setStep] = useState<Step>('front-work');
+  const [step, setStep] = useState<Step>('landing');
   const [frontFinal, setFrontFinal] = useState<string | null>(null);
   const [backFinal, setBackFinal] = useState<string | null>(null);
   const [signature, setSignature] = useState<string | null>(null);
@@ -105,6 +106,10 @@ export default function App() {
     });
   }, []);
 
+  const handleStart = () => {
+    setStep('front-work');
+  };
+
   const handleFrontComplete = (final: string) => {
     setFrontFinal(final);
     setStep('back-work');
@@ -175,6 +180,9 @@ export default function App() {
         </header>
 
         <main className="app-main">
+          {step === 'landing' && (
+            <LandingScreen onStart={handleStart} />
+          )}
           {step === 'front-work' && (
             <WorkScreen
               label="Front of ID"
