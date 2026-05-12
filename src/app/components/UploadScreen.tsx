@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import styles from './UploadScreen.module.css';
 
 interface UploadScreenProps {
@@ -7,6 +8,23 @@ interface UploadScreenProps {
 
 export function UploadScreen({ onUpload, label }: UploadScreenProps) {
   const inputId = `file-input-${Math.random().toString(36).slice(2, 9)}`;
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+
+  const handleCameraCapture = () => {
+    cameraInputRef.current?.click();
+  };
+
+  const handleCameraChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const dataUrl = ev.target?.result as string;
+        onUpload(dataUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleFile = (file: File) => {
     if (!file.type.startsWith('image/')) return;
@@ -45,10 +63,11 @@ export function UploadScreen({ onUpload, label }: UploadScreenProps) {
           <circle cx="15" cy="14" r="3" fill="currentColor" stroke="none" opacity="0.6" />
         </svg>
         <h3 className={styles.dropTitle}>Upload {label}</h3>
-        <p className={styles.dropText}>Drag & drop or click to browse</p>
+        <p className={styles.dropText}>Drag & drop, click to browse, or take photo</p>
         <input
           type="file"
           accept="image/*"
+          capture="environment"
           onChange={handleChange}
           className={styles.input}
           id={inputId}
@@ -57,6 +76,27 @@ export function UploadScreen({ onUpload, label }: UploadScreenProps) {
         <label htmlFor={inputId} className={`${styles.browseBtn} liquid-glass`}>
           Browse Files
         </label>
+        <button 
+          type="button"
+          className={styles.cameraBtn}
+          onClick={handleCameraCapture}
+          aria-label="Take photo with camera"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          Take Photo
+        </button>
+        <input
+          ref={cameraInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          onChange={handleCameraChange}
+          className={styles.hiddenInput}
+          aria-label="Camera capture"
+        />
       </div>
     </div>
   );

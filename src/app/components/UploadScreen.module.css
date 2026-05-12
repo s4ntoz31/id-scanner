@@ -120,6 +120,34 @@
   transform: scale(0.98);
 }
 
+.cameraBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: 12px 24px;
+  background: rgba(202, 138, 0.12);
+  border: 1px solid rgba(202, 138, 4, 0.25);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: hsl(var(--accent));
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.cameraBtn:hover {
+  background: rgba(202, 138, 4, 0.2);
+  border-color: rgba(202, 138, 4, 0.4);
+}
+
+.hiddenInput {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .dropZone {
     padding: var(--space-sm);
