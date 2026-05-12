@@ -127,12 +127,12 @@
   gap: var(--space-sm);
   margin-top: var(--space-md);
   padding: 12px 24px;
-  background: rgba(202, 138, 0.12);
-  border: 1px solid rgba(202, 138, 4, 0.25);
+  background: rgba(202, 138, 0.15);
+  border: 1px solid rgba(202, 138, 4, 0.4);
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: hsl(var(--accent));
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -140,8 +140,8 @@
 }
 
 .cameraBtn:hover {
-  background: rgba(202, 138, 4, 0.2);
-  border-color: rgba(202, 138, 4, 0.4);
+  background: rgba(202, 138, 4, 0.25);
+  transform: translateY(-2px);
 }
 
 .hiddenInput {
