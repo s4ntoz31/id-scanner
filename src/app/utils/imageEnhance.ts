@@ -1,7 +1,68 @@
-// Simple image enhancement for document readability
-// Applies contrast, brightness, and sharpening effect
+// OpenCV.js image enhancement for document scanning
+// Loads OpenCV.js dynamically when needed
 
-export function enhanceImageSimple(dataUrl: string): Promise<string> {
+interface OpenCV {
+  imread(mat: HTMLCanvasElement | HTMLImageElement | string): OpenCVMat;
+  imshow(canvas: HTMLCanvasElement, mat: OpenCVMat): void;
+  Mat: new () => OpenCVMat;
+  matFromArray(rows: number, cols: number, type: number, data: number[]): OpenCVMat;
+  cvtColor(src: OpenCVMat, dst: OpenCVMat, code: number, dstCn?: number): void;
+  adaptiveThreshold(src: OpenCVMat, dst: OpenCVMat, maxValue: number, adaptiveMethod: number, thresholdType: number, blockSize: number, C: number): void;
+  fastNlMeansDenoising(src: OpenCVMat, dst: OpenCVMat, h?: number, hForColorComponents?: number, templateWindowSize?: number, searchWindowSize?: number): void;
+  convertTo(src: OpenCVMat, dst: OpenCVMat, rtype: number, alpha?: number, beta?: number): void;
+  filter2D(src: OpenCVMat, dst: OpenCVMat, ddepth: number, kernel: OpenCVMat, anchor?: { x: number; y: number }, delta?: number, borderType?: number): void;
+  equalizeHist(src: OpenCVMat, dst: OpenCVMat): void;
+  COLOR_RGBA2GRAY: number;
+  COLOR_GRAY2RGBA: number;
+  ADAPTIVE_THRESH_GAUSSIAN_C: number;
+  ADAPTIVE_THRESH_MEAN_C: number;
+  THRESH_BINARY: number;
+  CV_8U: number;
+  CV_32F: number;
+  CV_8UC4: number;
+}
+
+interface OpenCVMat {
+  delete(): void;
+  rows: number;
+  cols: number;
+  convertTo(dst: OpenCVMat, rtype: number, alpha?: number, beta?: number): void;
+}
+
+let opencvPromise: Promise<OpenCV> | null = null;
+
+async function loadOpenCV(): Promise<OpenCV> {
+  if (opencvPromise) return opencvPromise;
+
+  opencvPromise = new Promise((resolve, reject) => {
+    if (typeof window !== 'undefined' && (window as unknown as { cv?: OpenCV }).cv) {
+      resolve((window as unknown as { cv: OpenCV }).cv);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://docs.opencv.org/4.8.0/opencv.js';
+    script.async = true;
+    script.onload = () => {
+      const waitForCv = () => {
+        if ((window as unknown as { cv?: OpenCV }).cv) {
+          resolve((window as unknown as { cv: OpenCV }).cv);
+        } else {
+          setTimeout(waitForCv, 50);
+        }
+      };
+      waitForCv();
+    };
+    script.onerror = () => reject(new Error('Failed to load OpenCV.js'));
+    document.head.appendChild(script);
+  });
+
+  return opencvPromise;
+}
+
+export async function enhanceImageOpenCV(dataUrl: string): Promise<string> {
+  const cv = await loadOpenCV();
+
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
@@ -17,56 +78,58 @@ export function enhanceImageSimple(dataUrl: string): Promise<string> {
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
 
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imageData.data;
-      const width = imageData.width;
-      const height = imageData.height;
+      const src = cv.imread(canvas);
+      const dst = new cv.Mat();
+      const gray = new cv.Mat();
 
-      // Apply contrast and brightness
-      const contrast = 1.5;
-      const brightness = 15;
+      try {
+        // Convert to grayscale
+        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
 
-      for (let i = 0; i < data.length; i += 4) {
-        // Apply contrast
-        data[i] = Math.min(255, Math.max(0, (data[i] - 128) * contrast + 128 + brightness));
-        data[i + 1] = Math.min(255, Math.max(0, (data[i + 1] - 128) * contrast + 128 + brightness));
-        data[i + 2] = Math.min(255, Math.max(0, (data[i + 2] - 128) * contrast + 128 + brightness));
+        // Apply adaptive threshold for document enhancement
+        cv.adaptiveThreshold(
+          gray,
+          gray,
+          255,
+          cv.ADAPTIVE_THRESH_GAUSSIAN_C,
+          cv.THRESH_BINARY,
+          11,
+          2
+        );
+
+        // Denoise
+        cv.fastNlMeansDenoising(gray, gray, 10, 7, 21);
+
+        // Increase contrast
+        gray.convertTo(gray, cv.CV_8U, 1.3, 0);
+
+        // Sharpen
+        const kernel = cv.matFromArray(3, 3, cv.CV_32F, [
+          0, -1, 0,
+          -1, 5, -1,
+          0, -1, 0
+        ]);
+        cv.filter2D(gray, gray, cv.CV_8U, kernel);
+        kernel.delete();
+
+        // Convert back to RGBA
+        cv.cvtColor(gray, dst, cv.COLOR_GRAY2RGBA, 4);
+
+        // Draw result
+        cv.imshow(canvas, dst);
+
+        // Cleanup
+        src.delete();
+        dst.delete();
+        gray.delete();
+
+        resolve(canvas.toDataURL('image/jpeg', 0.9));
+      } catch (err) {
+        src.delete();
+        dst.delete();
+        gray.delete();
+        reject(err);
       }
-
-      // Apply sharpening using unsharp mask
-      const tempData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const temp = tempData.data;
-
-      const kernel = [
-        0, -1, 0,
-        -1, 5, -1,
-        0, -1, 0
-      ];
-      const offset = 1;
-
-      for (let y = offset; y < height - offset; y++) {
-        for (let x = offset; x < width - offset; x++) {
-          let r = 0, g = 0, b = 0;
-
-          for (let ky = -1; ky <= 1; ky++) {
-            for (let kx = -1; kx <= 1; kx++) {
-              const idx = ((y + ky) * width + (x + kx)) * 4;
-              const kidx = (ky + 1) * 3 + (kx + 1);
-              r += temp[idx] * kernel[kidx];
-              g += temp[idx + 1] * kernel[kidx];
-              b += temp[idx + 2] * kernel[kidx];
-            }
-          }
-
-          const idx = (y * width + x) * 4;
-          data[idx] = Math.min(255, Math.max(0, r));
-          data[idx + 1] = Math.min(255, Math.max(0, g));
-          data[idx + 2] = Math.min(255, Math.max(0, b));
-        }
-      }
-
-      ctx.putImageData(imageData, 0, 0);
-      resolve(canvas.toDataURL('image/jpeg', 0.9));
     };
     img.onerror = () => reject('Failed to load image');
     img.src = dataUrl;

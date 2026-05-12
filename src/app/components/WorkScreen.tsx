@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { CropData, Point } from '../types';
 import { UploadScreen } from './UploadScreen';
 import { CropScreen } from './CropScreen';
-import { enhanceImageSimple } from '../utils/imageEnhance';
+import { enhanceImageOpenCV } from '../utils/imageEnhance';
 import styles from './WorkScreen.module.css';
 
 interface WorkScreenProps {
@@ -56,8 +56,7 @@ export function WorkScreen({
     setError(null);
     try {
       const result = await processPerspective(imageData.imageSrc, imageData.corners);
-      // Enhance image for better readability (contrast, sharpening)
-      const enhanced = await enhanceImageSimple(result);
+      const enhanced = await enhanceImageOpenCV(result);
       setRotatedImage(enhanced);
       setPhase('rotate');
     } catch (err) {
