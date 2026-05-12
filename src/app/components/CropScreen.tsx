@@ -67,7 +67,7 @@ function drawOnCanvas(
 
   scaledCorners.forEach((corner, i) => {
     const isActive = activeCorner === CORNER_IDS[i];
-    const radius = isActive ? 10 : 8;
+    const radius = isActive ? 16 : 14;
 
     ctx.save();
     ctx.shadowColor = 'rgba(255, 179, 71, 0.3)';
@@ -125,7 +125,7 @@ export function CropScreen({ data, onCornersChange, onApply, isProcessing }: Cro
   }, [data.imageSrc, data.corners, activeCorner, data.imageWidth, data.imageHeight]);
 
   const getCornerAtPoint = (x: number, y: number): CornerId | null => {
-    const handleRadius = 24;
+    const handleRadius = 36;
     for (let i = 0; i < data.corners.length; i++) {
       const corner = data.corners[i];
       const screenX = corner.x * scale;
