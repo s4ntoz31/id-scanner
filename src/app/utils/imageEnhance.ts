@@ -1,68 +1,6 @@
-// OpenCV.js image enhancement for document scanning
-// Loads OpenCV.js dynamically when needed
+// Document image enhancement using CPU-based processing for reliability
 
-interface OpenCV {
-  imread(mat: HTMLCanvasElement | HTMLImageElement | string): OpenCVMat;
-  imshow(canvas: HTMLCanvasElement, mat: OpenCVMat): void;
-  Mat: new () => OpenCVMat;
-  matFromArray(rows: number, cols: number, type: number, data: number[]): OpenCVMat;
-  cvtColor(src: OpenCVMat, dst: OpenCVMat, code: number, dstCn?: number): void;
-  adaptiveThreshold(src: OpenCVMat, dst: OpenCVMat, maxValue: number, adaptiveMethod: number, thresholdType: number, blockSize: number, C: number): void;
-  fastNlMeansDenoising(src: OpenCVMat, dst: OpenCVMat, h?: number, hForColorComponents?: number, templateWindowSize?: number, searchWindowSize?: number): void;
-  convertTo(src: OpenCVMat, dst: OpenCVMat, rtype: number, alpha?: number, beta?: number): void;
-  filter2D(src: OpenCVMat, dst: OpenCVMat, ddepth: number, kernel: OpenCVMat, anchor?: { x: number; y: number }, delta?: number, borderType?: number): void;
-  equalizeHist(src: OpenCVMat, dst: OpenCVMat): void;
-  COLOR_RGBA2GRAY: number;
-  COLOR_GRAY2RGBA: number;
-  ADAPTIVE_THRESH_GAUSSIAN_C: number;
-  ADAPTIVE_THRESH_MEAN_C: number;
-  THRESH_BINARY: number;
-  CV_8U: number;
-  CV_32F: number;
-  CV_8UC4: number;
-}
-
-interface OpenCVMat {
-  delete(): void;
-  rows: number;
-  cols: number;
-  convertTo(dst: OpenCVMat, rtype: number, alpha?: number, beta?: number): void;
-}
-
-let opencvPromise: Promise<OpenCV> | null = null;
-
-async function loadOpenCV(): Promise<OpenCV> {
-  if (opencvPromise) return opencvPromise;
-
-  opencvPromise = new Promise((resolve, reject) => {
-    if (typeof window !== 'undefined' && (window as unknown as { cv?: OpenCV }).cv) {
-      resolve((window as unknown as { cv: OpenCV }).cv);
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://docs.opencv.org/4.8.0/opencv.js';
-    script.async = true;
-    script.onload = () => {
-      const waitForCv = () => {
-        if ((window as unknown as { cv?: OpenCV }).cv) {
-          resolve((window as unknown as { cv: OpenCV }).cv);
-        } else {
-          setTimeout(waitForCv, 50);
-        }
-      };
-      waitForCv();
-    };
-    script.onerror = () => reject(new Error('Failed to load OpenCV.js'));
-    document.head.appendChild(script);
-  });
-
-  return opencvPromise;
-}
-
-export async function enhanceImageOpenCV(dataUrl: string): Promise<string> {
-  const cv = await loadOpenCV();
-
+function enhanceImageCPU(dataUrl: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
@@ -78,60 +16,35 @@ export async function enhanceImageOpenCV(dataUrl: string): Promise<string> {
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
 
-      const src = cv.imread(canvas);
-      const dst = new cv.Mat();
-      const gray = new cv.Mat();
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
 
-      try {
-        // Convert to grayscale
-        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+      for (let i = 0; i < data.length; i += 4) {
+        let r = data[i];
+        let g = data[i + 1];
+        let b = data[i + 2];
 
-        // Apply adaptive threshold for document enhancement
-        cv.adaptiveThreshold(
-          gray,
-          gray,
-          255,
-          cv.ADAPTIVE_THRESH_GAUSSIAN_C,
-          cv.THRESH_BINARY,
-          11,
-          2
-        );
+        r = Math.min(255, Math.max(0, (r - 128) * 1.3 + 128));
+        g = Math.min(255, Math.max(0, (g - 128) * 1.3 + 128));
+        b = Math.min(255, Math.max(0, (b - 128) * 1.3 + 128));
 
-        // Denoise
-        cv.fastNlMeansDenoising(gray, gray, 10, 7, 21);
+        r = Math.min(255, r + 15);
+        g = Math.min(255, g + 15);
+        b = Math.min(255, b + 15);
 
-        // Increase contrast
-        gray.convertTo(gray, cv.CV_8U, 1.3, 0);
-
-        // Sharpen
-        const kernel = cv.matFromArray(3, 3, cv.CV_32F, [
-          0, -1, 0,
-          -1, 5, -1,
-          0, -1, 0
-        ]);
-        cv.filter2D(gray, gray, cv.CV_8U, kernel);
-        kernel.delete();
-
-        // Convert back to RGBA
-        cv.cvtColor(gray, dst, cv.COLOR_GRAY2RGBA, 4);
-
-        // Draw result
-        cv.imshow(canvas, dst);
-
-        // Cleanup
-        src.delete();
-        dst.delete();
-        gray.delete();
-
-        resolve(canvas.toDataURL('image/jpeg', 0.9));
-      } catch (err) {
-        src.delete();
-        dst.delete();
-        gray.delete();
-        reject(err);
+        data[i] = r;
+        data[i + 1] = g;
+        data[i + 2] = b;
       }
+
+      ctx.putImageData(imageData, 0, 0);
+      resolve(canvas.toDataURL('image/jpeg', 0.92));
     };
     img.onerror = () => reject('Failed to load image');
     img.src = dataUrl;
   });
+}
+
+export async function enhanceImageOpenCV(dataUrl: string): Promise<string> {
+  return enhanceImageCPU(dataUrl);
 }

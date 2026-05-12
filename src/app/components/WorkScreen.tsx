@@ -55,14 +55,19 @@ export function WorkScreen({
     setIsProcessing(true);
     setError(null);
     try {
+      console.log('Starting perspective transform...');
       const result = await processPerspective(imageData.imageSrc, imageData.corners);
+      console.log('Perspective transform complete, enhancing image...');
       const enhanced = await enhanceImageOpenCV(result);
+      console.log('Image enhancement complete');
       setRotatedImage(enhanced);
       setPhase('rotate');
     } catch (err) {
+      console.error('Error in handleCropApply:', err);
       setError(err instanceof Error ? err.message : 'Failed to process image');
     } finally {
       setIsProcessing(false);
+      console.log('Processing finished');
     }
   };
 
