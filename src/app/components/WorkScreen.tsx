@@ -141,7 +141,7 @@ export function WorkScreen({
           label={label}
         />
         {onSkip && (
-          <button className={styles.skipBtnTop} onClick={onSkip} aria-label="Skip this step">
+          <button className={`${styles.skipBtnTop} glass-btn`} onClick={onSkip} aria-label="Skip this step">
             Skip this step
           </button>
         )}
@@ -166,18 +166,18 @@ export function WorkScreen({
     return (
       <div className={styles.rotateContainer}>
         {error && <div className={styles.error}>{error}</div>}
-        <div className={styles.canvasWrapper}>
+        <div className={`${styles.canvasWrapper} liquid-glass`}>
           <img 
             src={rotatedImage} 
             alt={`Rotated ${label}`}
             className={styles.image}
           />
           {rotation > 0 && (
-            <div className={styles.badge}>{rotation}°</div>
+            <div className={`${styles.badge} glass-gradient-btn`}>{rotation}°</div>
           )}
         </div>
         <div className={styles.rotateControls}>
-          <button className={styles.rotateBtn} onClick={() => rotateImage('left')} aria-label="Rotate left">
+          <button className={`${styles.rotateBtn} glass-gradient-btn`} onClick={() => rotateImage('left')} aria-label="Rotate left">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
               <path d="M3 3v5h5" />
@@ -185,7 +185,7 @@ export function WorkScreen({
             ↺ Left
           </button>
           <span className={styles.rotationLabel}>{rotation}°</span>
-          <button className={styles.rotateBtn} onClick={() => rotateImage('right')} aria-label="Rotate right">
+          <button className={`${styles.rotateBtn} glass-gradient-btn`} onClick={() => rotateImage('right')} aria-label="Rotate right">
             ↻ Right
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
@@ -195,14 +195,14 @@ export function WorkScreen({
         </div>
         <div className={styles.actions}>
           {onSkip && (
-            <button className={styles.skipBtn} onClick={onSkip} aria-label="Skip this step">
+            <button className={`${styles.skipBtn} glass-btn`} onClick={onSkip} aria-label="Skip this step">
               Skip
             </button>
           )}
-          <button className={styles.retakeBtn} onClick={handleRetake} aria-label="Retake photo">
+          <button className={`${styles.retakeBtn} glass-btn`} onClick={handleRetake} aria-label="Retake photo">
             ↩ Retake
           </button>
-          <button className={styles.doneBtn} onClick={handleDone} aria-label="Done">
+          <button className={`${styles.doneBtn} glass-gradient-btn`} onClick={handleDone} aria-label="Done">
             ✓ Done
           </button>
         </div>

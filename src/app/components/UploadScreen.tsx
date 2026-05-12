@@ -72,12 +72,12 @@ export function UploadScreen({ onUpload, label }: UploadScreenProps) {
             id={inputId}
             aria-label={`Select ${label} image file`}
           />
-        <label htmlFor={inputId} className={`${styles.browseBtn} liquid-glass`}>
+        <label htmlFor={inputId} className={`${styles.browseBtn} glass-gradient-btn`}>
           Browse Files
         </label>
         <button 
           type="button"
-          className={styles.cameraBtn}
+          className={`${styles.cameraBtn} glass-btn`}
           onClick={handleCameraCapture}
           aria-label="Take photo with camera"
         >

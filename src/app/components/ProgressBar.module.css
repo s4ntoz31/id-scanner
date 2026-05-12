@@ -21,8 +21,10 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: hsl(var(--surface));
-  border: 1px solid hsl(var(--stroke));
+  background: hsl(var(--surface) / 0.5);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid hsl(var(--stroke) / 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,6 +33,7 @@
   color: hsl(var(--muted));
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .dot svg {
@@ -44,14 +47,15 @@
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   min-width: 20px;
   transition: all 0.3s ease;
-  opacity: 0.3;
+  opacity: 0.2;
+  border-radius: 1px;
 }
 
 .step.active .dot {
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   border-color: transparent;
-  color: hsl(var(--bg));
-  box-shadow: 0 0 12px rgba(137, 170, 204, 0.4);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(137, 170, 204, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .step.active .line {
@@ -61,7 +65,8 @@
 .step.completed .dot {
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   border-color: transparent;
-  color: hsl(var(--bg));
+  color: #fff;
+  box-shadow: 0 0 12px rgba(137, 170, 204, 0.25);
 }
 
 .step.completed .line {
@@ -72,23 +77,23 @@
   .container {
     padding: var(--space-md) var(--space-sm) var(--space-sm);
   }
-  
+
   .steps {
     max-width: 280px;
     gap: 2px;
   }
-  
+
   .dot {
     width: 28px;
     height: 28px;
     font-size: 0.65rem;
   }
-  
+
   .dot svg {
     width: 12px;
     height: 12px;
   }
-  
+
   .line {
     min-width: 12px;
   }

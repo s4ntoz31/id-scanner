@@ -95,7 +95,7 @@ export function SignatureUpload({ onSignature, onSkip }: SignatureUploadProps) {
           />
         </div>
 
-        <button className={styles.skipBtn} onClick={onSkip} aria-label="Skip adding signature">
+        <button className={`${styles.skipBtn} glass-btn`} onClick={onSkip} aria-label="Skip adding signature">
           <SkipForward size={18} aria-hidden="true" />
           Skip this step
         </button>

@@ -181,7 +181,7 @@ export function CropScreen({ data, onCornersChange, onApply, isProcessing }: Cro
         />
       </div>
       <div className={styles.actions} role="group" aria-label="Crop actions">
-        <button className={styles.applyBtn} onClick={onApply} disabled={isProcessing} aria-label={isProcessing ? 'Processing crop' : 'Apply crop'}>
+        <button className={`${styles.applyBtn} glass-gradient-btn`} onClick={onApply} disabled={isProcessing} aria-label={isProcessing ? 'Processing crop' : 'Apply crop'}>
           {isProcessing ? 'Processing...' : 'Apply Crop'}
         </button>
       </div>

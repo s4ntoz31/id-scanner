@@ -263,13 +263,13 @@ export function PreviewScreen({ frontImage, backImage, signature, onReset }: Pre
         <p className={styles.hint}>Drag signature to reposition</p>
       )}
       <div className={styles.actions} role="group" aria-label="Export options">
-        <button className={styles.resetBtn} onClick={onReset} aria-label="Start over">
+        <button className={`${styles.resetBtn} glass-btn`} onClick={onReset} aria-label="Start over">
           Start Over
         </button>
-        <button className={styles.exportBtn} onClick={handleExportPNG} disabled={isExporting || !loaded} aria-label={isExporting ? 'Exporting PNG' : 'Download as PNG'}>
+        <button className={`${styles.exportBtn} glass-btn`} onClick={handleExportPNG} disabled={isExporting || !loaded} aria-label={isExporting ? 'Exporting PNG' : 'Download as PNG'}>
           {isExporting ? 'Exporting...' : 'Download JPG'}
         </button>
-        <button className={styles.exportBtnPrimary} onClick={handleExportPDF} disabled={isExporting || !loaded} aria-label={isExporting ? 'Exporting PDF' : 'Download as PDF'}>
+        <button className={`${styles.exportBtnPrimary} glass-gradient-btn`} onClick={handleExportPDF} disabled={isExporting || !loaded} aria-label={isExporting ? 'Exporting PDF' : 'Download as PDF'}>
           Download PDF
         </button>
       </div>

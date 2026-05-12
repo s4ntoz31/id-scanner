@@ -168,7 +168,7 @@ export default function App() {
         
         <header className="app-header">
           {canGoBack && (
-            <button className="app-back-btn" onClick={handleBack}>
+            <button className="app-back-btn glass-btn" onClick={handleBack}>
               ← Back
             </button>
           )}

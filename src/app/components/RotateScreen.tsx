@@ -75,7 +75,7 @@ export function RotateScreen({ imageSrc, onRotate, onFinalize, onContinue, label
           </svg>
           Rotate {rotation > 0 ? `(currently ${rotation}°)` : ''}
         </button>
-        <button className={styles.continueBtn} onClick={handleContinue} aria-label="Continue to next step">
+        <button className={`${styles.continueBtn} glass-gradient-btn`} onClick={handleContinue} aria-label="Continue to next step">
           Continue
         </button>
       </div>

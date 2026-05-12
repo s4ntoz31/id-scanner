@@ -11,8 +11,6 @@
   max-width: 420px;
   height: 380px;
   border-radius: var(--radius-xl);
-  background: hsl(var(--surface));
-  border: 1px solid hsl(var(--stroke));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,21 +23,6 @@
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: #89AACC;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(137, 170, 204, 0.15);
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #89AACC, transparent);
-  opacity: 0.3;
 }
 
 .gradientOrb {
@@ -96,30 +79,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
   padding: 16px 36px;
-  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-  border: none;
+  color: #fff;
   border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   z-index: 1;
   min-height: 52px;
   letter-spacing: 0.5px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.browseBtn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(137, 170, 204, 0.4);
-}
-
-.browseBtn:active {
-  transform: scale(0.98);
 }
 
 .cameraBtn {
@@ -129,22 +99,14 @@
   gap: var(--space-sm);
   margin-top: var(--space-md);
   padding: 14px 28px;
-  background: transparent;
-  border: 1px solid hsl(var(--stroke));
   border-radius: var(--radius-full);
   font-size: 0.95rem;
   font-weight: 500;
   color: hsl(var(--text));
   cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
   z-index: 1;
   min-height: 48px;
-}
-
-.cameraBtn:hover {
-  border-color: #89AACC;
-  background: rgba(137, 170, 204, 0.1);
 }
 
 .cameraBtn svg {
@@ -160,11 +122,11 @@
   .dropZone {
     padding: var(--space-sm);
   }
-  
+
   .card {
     height: 320px;
   }
-  
+
   .icon {
     width: 44px;
     height: 44px;

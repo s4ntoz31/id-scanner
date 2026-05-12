@@ -19,19 +19,15 @@
   max-width: 320px;
   margin: var(--space-lg) auto 0;
   padding: 14px 24px;
-  background: transparent;
-  color: hsl(var(--muted));
-  border: 1px solid hsl(var(--stroke));
-  border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 500;
+  color: hsl(var(--muted));
   cursor: pointer;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-full);
 }
 
 .skipBtnTop:hover {
   color: hsl(var(--text));
-  border-color: #89AACC;
 }
 
 .error {
@@ -50,22 +46,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: hsl(var(--surface));
-  border: 1px solid hsl(var(--stroke));
   border-radius: var(--radius-xl);
   overflow: hidden;
   position: relative;
-}
-
-.canvasWrapper::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #89AACC, transparent);
-  opacity: 0.3;
 }
 
 .image {
@@ -80,12 +63,11 @@
   position: absolute;
   top: var(--space-md);
   right: var(--space-md);
-  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-  color: #fff;
   padding: 6px 14px;
   border-radius: var(--radius-full);
   font-size: 0.8rem;
   font-weight: 600;
+  color: #fff;
   border: none;
 }
 
@@ -113,19 +95,11 @@
   gap: 10px;
   min-width: 110px;
   padding: 16px 28px;
-  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   color: #fff;
-  border: none;
   border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.rotateBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(137, 170, 204, 0.4);
 }
 
 .actions {
@@ -140,58 +114,38 @@
   align-items: center;
   gap: 8px;
   padding: 16px 32px;
-  background: transparent;
   color: hsl(var(--muted));
-  border: 1px solid hsl(var(--stroke));
   border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .retakeBtn:hover {
-  border-color: #89AACC;
   color: hsl(var(--text));
 }
 
 .skipBtn {
   padding: 16px 24px;
-  background: transparent;
   color: hsl(var(--muted));
-  border: 1px solid hsl(var(--stroke));
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .skipBtn:hover {
   color: hsl(var(--text));
-  border-color: #89AACC;
 }
 
 .doneBtn {
   padding: 16px 40px;
-  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   color: #fff;
-  border: none;
   border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: 0.5px;
-}
-
-.doneBtn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(137, 170, 204, 0.45);
-}
-
-.doneBtn:active:not(:disabled) {
-  transform: scale(0.98);
 }
 
 .doneBtn:disabled {
@@ -227,21 +181,21 @@
     padding: var(--space-sm);
     min-height: 440px;
   }
-  
+
   .rotateControls {
     gap: var(--space-md);
   }
-  
+
   .rotateBtn {
     padding: 12px 20px;
     font-size: 0.9rem;
   }
-  
+
   .actions {
     flex-direction: column;
     gap: var(--space-sm);
   }
-  
+
   .retakeBtn,
   .doneBtn {
     width: 100%;
