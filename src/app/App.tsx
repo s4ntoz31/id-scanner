@@ -14,17 +14,8 @@ export default function App() {
   const [signature, setSignature] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   
   const workerRef = useRef<Worker | null>(null);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
 
   useEffect(() => {
     workerRef.current = new Worker(
@@ -163,9 +154,6 @@ export default function App() {
       <div className="app-content" role="main">
         <div className="brand-header">
           <span>Made Easy ID scan copy</span>
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
         </div>
         <ProgressBar currentStep={currentStepIndex} totalSteps={STEP_ORDER.length} />
         
