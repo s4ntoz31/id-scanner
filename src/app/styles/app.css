@@ -164,6 +164,16 @@ body {
   padding: 0 var(--space-md) var(--space-xl);
 }
 
+.brand-header {
+  text-align: center;
+  padding: var(--space-lg) 0 var(--space-md);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: hsl(var(--accent));
+  letter-spacing: 0.5px;
+}
+
 .app-header {
   text-align: center;
   padding: var(--space-lg) var(--space-lg) var(--space-lg);
