@@ -11,10 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: 
-    radial-gradient(ellipse at 50% 0%, rgba(202, 138, 4, 0.05) 0%, transparent 50%),
-    hsl(var(--card));
-  border: 1px solid hsl(var(--border));
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--stroke));
   border-radius: var(--radius-xl);
   overflow: hidden;
   position: relative;
@@ -27,7 +25,8 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(202, 138, 4, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, #89AACC, transparent);
+  opacity: 0.3;
 }
 
 .image {
@@ -42,13 +41,13 @@
   position: absolute;
   top: var(--space-md);
   right: var(--space-md);
-  background: rgba(202, 138, 4, 0.2);
-  color: hsl(var(--accent));
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+  color: hsl(var(--bg));
   padding: 6px 14px;
   border-radius: var(--radius-full);
   font-size: 0.8rem;
   font-weight: 600;
-  border: 1px solid rgba(202, 138, 4, 0.3);
+  border: none;
 }
 
 .actions {
@@ -63,9 +62,9 @@
   align-items: center;
   gap: 8px;
   padding: 16px 28px;
-  background: rgba(202, 138, 4, 0.12);
-  color: hsl(var(--accent));
-  border: 1px solid rgba(202, 138, 4, 0.25);
+  background: hsl(var(--surface));
+  color: hsl(var(--text));
+  border: 1px solid hsl(var(--stroke));
   border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 500;
@@ -75,14 +74,14 @@
 }
 
 .rotateBtn:hover {
-  background: rgba(202, 138, 4, 0.2);
-  border-color: rgba(202, 138, 4, 0.4);
+  border-color: #89AACC;
+  background: hsl(var(--bg));
 }
 
 .continueBtn {
   padding: 16px 40px;
-  background: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+  color: hsl(var(--bg));
   border: none;
   border-radius: var(--radius-full);
   font-size: 1rem;
@@ -95,7 +94,7 @@
 
 .continueBtn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(202, 138, 4, 0.45);
+  box-shadow: 0 12px 32px rgba(137, 170, 204, 0.45);
 }
 
 .continueBtn:active:not(:disabled) {

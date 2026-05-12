@@ -11,10 +11,8 @@
   max-width: 420px;
   height: 380px;
   border-radius: var(--radius-xl);
-  background: 
-    radial-gradient(ellipse at 50% 0%, rgba(202, 138, 4, 0.12) 0%, transparent 60%),
-    hsl(var(--card));
-  border: 1px solid hsl(var(--border));
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--stroke));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,10 +25,10 @@
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: hsl(var(--accent));
+  border-color: #89AACC;
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.2),
-    0 0 60px rgba(202, 138, 4, 0.1);
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(137, 170, 204, 0.15);
 }
 
 .card::before {
@@ -40,7 +38,8 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
+  background: linear-gradient(90deg, transparent, #89AACC, transparent);
+  opacity: 0.3;
 }
 
 .gradientOrb {
@@ -50,7 +49,7 @@
   transform: translateX(-50%);
   width: 500px;
   height: 400px;
-  background: radial-gradient(circle at 50% 0%, rgba(202, 138, 4, 0.15) 0%, transparent 50%);
+  background: radial-gradient(circle at 50% 0%, rgba(137, 170, 204, 0.15) 0%, transparent 50%);
   pointer-events: none;
   animation: pulse 4s ease-in-out infinite;
 }
@@ -66,15 +65,16 @@
   margin-bottom: var(--space-lg);
   position: relative;
   z-index: 1;
-  color: hsl(var(--accent));
+  color: #89AACC;
   opacity: 0.9;
 }
 
 .dropTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 500;
-  color: hsl(var(--foreground));
+  font-weight: 400;
+  font-style: italic;
+  color: hsl(var(--text));
   margin-bottom: var(--space-sm);
   position: relative;
   z-index: 1;
@@ -82,7 +82,7 @@
 
 .dropText {
   font-size: 0.9rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--muted));
   margin-bottom: var(--space-xl);
   position: relative;
   z-index: 1;
@@ -98,12 +98,12 @@
   justify-content: center;
   gap: var(--space-sm);
   padding: 14px 32px;
-  background: hsl(var(--accent));
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
   border: none;
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 600;
-  color: hsl(var(--accent-foreground));
+  color: hsl(var(--bg));
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -113,7 +113,7 @@
 
 .browseBtn:hover {
   transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(202, 138, 4, 0.4);
+  box-shadow: 0 8px 24px rgba(137, 170, 204, 0.4);
 }
 
 .browseBtn:active {
@@ -127,12 +127,12 @@
   gap: var(--space-sm);
   margin-top: var(--space-md);
   padding: 12px 24px;
-  background: hsl(var(--accent));
-  border: 1px solid hsl(var(--accent));
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+  border: none;
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 600;
-  color: hsl(var(--accent-foreground));
+  color: hsl(var(--bg));
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;

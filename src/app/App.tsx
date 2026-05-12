@@ -4,6 +4,7 @@ import { STEP_ORDER, STEP_LABELS } from './types';
 import { WorkScreen } from './components/WorkScreen';
 import { PreviewScreen } from './components/PreviewScreen';
 import { ProgressBar } from './components/ProgressBar';
+import { LoadingScreen } from './components/LoadingScreen';
 import './styles/app.css';
 
 export default function App() {
@@ -31,9 +32,7 @@ export default function App() {
       { type: 'module' }
     );
     
-    const timer = setTimeout(() => setIsLoading(false), 100);
     return () => {
-      clearTimeout(timer);
       workerRef.current?.terminate();
     };
   }, []);
@@ -156,12 +155,7 @@ export default function App() {
   const labels = STEP_LABELS[step];
 
   if (isLoading) {
-    return (
-      <div className="app-loading" role="status" aria-label="Loading">
-        <div className="spinner" aria-hidden="true" />
-        <p>Loading...</p>
-      </div>
-    );
+    return <LoadingScreen onComplete={() => setIsLoading(false)} />;
   }
 
   return (
