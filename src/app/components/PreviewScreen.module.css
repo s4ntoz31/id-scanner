@@ -97,7 +97,7 @@
 .exportBtnPrimary {
   padding: 14px 28px;
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-  color: hsl(var(--bg));
+  color: #fff;
   border: none;
   border-radius: var(--radius-full);
   font-size: 0.9rem;

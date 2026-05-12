@@ -19,47 +19,48 @@
   width: 64px;
   height: 64px;
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
-  border: 1px solid hsl(var(--border));
+  background: linear-gradient(135deg, rgba(137, 170, 204, 0.2), rgba(78, 133, 191, 0.2));
+  border: 1px solid hsl(var(--stroke));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: hsl(var(--foreground));
+  color: #89AACC;
   margin-bottom: 20px;
 }
 
 .title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-display);
+  font-style: italic;
   font-size: 1.75rem;
-  font-weight: 500;
-  color: hsl(var(--foreground));
+  font-weight: 400;
+  color: hsl(var(--text));
   margin-bottom: 8px;
 }
 
 .subtitle {
   font-size: 0.9rem;
-  color: hsl(var(--muted-foreground));
+  color: hsl(var(--muted));
   margin-bottom: 28px;
 }
 
 .dropZone {
   width: 100%;
   padding: 40px 24px;
-  border: 2px dashed hsl(var(--border));
+  border: 2px dashed hsl(var(--stroke));
   border-radius: 20px;
-  background: hsl(var(--muted));
+  background: hsl(var(--surface));
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  color: hsl(var(--muted-foreground));
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: hsl(var(--muted));
 }
 
 .dropZone:hover {
-  border-color: hsl(var(--accent));
-  background: hsl(var(--secondary));
+  border-color: #89AACC;
+  background: hsl(var(--surface));
 }
 
 .input {
@@ -76,10 +77,10 @@
 .spinner {
   width: 24px;
   height: 24px;
-  border: 2px solid rgba(99, 102, 241, 0.3);
-  border-top-color: #6366F1;
+  border: 2px solid rgba(137, 170, 204, 0.3);
+  border-top-color: #89AACC;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
@@ -93,17 +94,17 @@
   margin-top: 20px;
   padding: 12px 24px;
   background: transparent;
-  color: hsl(var(--muted-foreground));
-  border: 1px solid hsl(var(--border));
-  border-radius: 12px;
+  color: hsl(var(--muted));
+  border: 1px solid hsl(var(--stroke));
+  border-radius: var(--radius-full);
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .skipBtn:hover {
-  color: hsl(var(--foreground));
-  border-color: hsl(var(--accent));
+  color: hsl(var(--text));
+  border-color: #89AACC;
 }
 
 .preview {
@@ -117,7 +118,7 @@
   max-width: 200px;
   max-height: 80px;
   object-fit: contain;
-  background: hsl(var(--muted));
+  background: hsl(var(--surface));
   border-radius: 12px;
   padding: 12px;
 }
@@ -136,17 +137,17 @@
 .changeBtn {
   padding: 10px 20px;
   background: transparent;
-  color: hsl(var(--muted-foreground));
-  border: 1px solid hsl(var(--border));
-  border-radius: 12px;
+  color: hsl(var(--muted));
+  border: 1px solid hsl(var(--stroke));
+  border-radius: var(--radius-full);
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .changeBtn:hover {
-  color: hsl(var(--foreground));
-  border-color: hsl(var(--accent));
+  color: hsl(var(--text));
+  border-color: #89AACC;
 }
 
 .continueBtn {
@@ -154,17 +155,17 @@
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: linear-gradient(135deg, #6366F1, #8B5CF6);
-  color: white;
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+  color: hsl(var(--bg));
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-full);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .continueBtn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 16px rgba(137, 170, 204, 0.3);
 }

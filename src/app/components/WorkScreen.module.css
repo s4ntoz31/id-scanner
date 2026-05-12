@@ -81,7 +81,7 @@
   top: var(--space-md);
   right: var(--space-md);
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-  color: hsl(var(--bg));
+  color: #fff;
   padding: 6px 14px;
   border-radius: var(--radius-full);
   font-size: 0.8rem;
@@ -114,7 +114,7 @@
   min-width: 110px;
   padding: 16px 28px;
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-  color: hsl(var(--bg));
+  color: #fff;
   border: none;
   border-radius: var(--radius-full);
   font-size: 1rem;
@@ -175,7 +175,7 @@
 .doneBtn {
   padding: 16px 40px;
   background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-  color: hsl(var(--bg));
+  color: #fff;
   border: none;
   border-radius: var(--radius-full);
   font-size: 1rem;
