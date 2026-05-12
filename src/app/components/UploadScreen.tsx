@@ -64,15 +64,14 @@ export function UploadScreen({ onUpload, label }: UploadScreenProps) {
         </svg>
         <h3 className={styles.dropTitle}>Upload {label}</h3>
         <p className={styles.dropText}>Drag & drop, click to browse, or take photo</p>
-        <input
-          type="file"
-          accept="image/*"
-          capture="environment"
-          onChange={handleChange}
-          className={styles.input}
-          id={inputId}
-          aria-label={`Select ${label} image file`}
-        />
+<input
+            type="file"
+            accept="image/*"
+            onChange={handleChange}
+            className={styles.input}
+            id={inputId}
+            aria-label={`Select ${label} image file`}
+          />
         <label htmlFor={inputId} className={`${styles.browseBtn} liquid-glass`}>
           Browse Files
         </label>

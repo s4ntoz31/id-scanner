@@ -338,8 +338,8 @@ body {
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
-  background: hsl(var(--muted));
-  color: hsl(var(--muted-foreground));
+  background: hsl(var(--surface));
+  color: hsl(var(--text));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius-full);
   font-size: 0.8rem;
@@ -351,7 +351,7 @@ body {
 .app-back-btn:hover {
   background: hsl(var(--secondary));
   color: hsl(var(--foreground));
-  border-color: hsl(var(--accent));
+  border-color: #89AACC;
   transform: translateX(-2px);
 }
 
