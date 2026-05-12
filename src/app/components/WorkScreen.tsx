@@ -86,7 +86,7 @@ export function WorkScreen({
       ctx.rotate(angle);
       ctx.drawImage(img, -img.width / 2, -img.height / 2);
       
-      const newDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+      const newDataUrl = canvas.toDataURL('image/jpeg', 0.95);
       setRotatedImage(newDataUrl);
       setRotation(normalizedRotation);
     };

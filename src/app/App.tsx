@@ -56,15 +56,15 @@ export default function App() {
         let outputHeight: number;
         
         if (aspectRatio > 1) {
-          outputWidth = 800;
-          outputHeight = Math.round(800 / aspectRatio);
+          outputWidth = 1600;
+          outputHeight = Math.round(1600 / aspectRatio);
         } else {
-          outputHeight = 600;
-          outputWidth = Math.round(600 * aspectRatio);
+          outputHeight = 1200;
+          outputWidth = Math.round(1200 * aspectRatio);
         }
         
-        outputWidth = Math.max(100, Math.min(1200, outputWidth));
-        outputHeight = Math.max(50, Math.min(800, outputHeight));
+        outputWidth = Math.max(400, Math.min(2400, outputWidth));
+        outputHeight = Math.max(300, Math.min(1800, outputHeight));
 
         const handler = (e: MessageEvent) => {
           if (e.data.type === 'result') {
@@ -74,7 +74,7 @@ export default function App() {
             const outCtx = outCanvas.getContext('2d');
             if (outCtx) {
               outCtx.putImageData(e.data.imageData, 0, 0);
-              resolve(outCanvas.toDataURL('image/jpeg', 0.92));
+              resolve(outCanvas.toDataURL('image/jpeg', 0.95));
             } else {
               reject('Failed to create output canvas context');
             }
