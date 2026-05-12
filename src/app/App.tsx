@@ -151,6 +151,15 @@ export default function App() {
 
   return (
     <div className="app-container">
+      <video
+        className="bg-video"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+      <div className="bg-overlay" />
       <div className="app-content" role="main">
         <div className="brand-header">
           <span>Made Easy ID Scan Copy, Instant Printable</span>

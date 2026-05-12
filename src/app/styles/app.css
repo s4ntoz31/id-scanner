@@ -184,6 +184,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* ========================
    LIQUID GLASS EFFECT
    ======================== */
@@ -277,7 +295,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: hsl(var(--bg));
+  position: relative;
+  z-index: 2;
 }
 
 .app-content {
