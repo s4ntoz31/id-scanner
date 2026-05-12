@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { CropData, Point } from '../types';
 import { UploadScreen } from './UploadScreen';
 import { CropScreen } from './CropScreen';
+import { enhanceImageSimple } from '../utils/imageEnhance';
 import styles from './WorkScreen.module.css';
 
 interface WorkScreenProps {
@@ -55,7 +56,9 @@ export function WorkScreen({
     setError(null);
     try {
       const result = await processPerspective(imageData.imageSrc, imageData.corners);
-      setRotatedImage(result);
+      // Enhance image for better readability (contrast, sharpening)
+      const enhanced = await enhanceImageSimple(result);
+      setRotatedImage(enhanced);
       setPhase('rotate');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to process image');
@@ -86,7 +89,7 @@ export function WorkScreen({
       ctx.rotate(angle);
       ctx.drawImage(img, -img.width / 2, -img.height / 2);
       
-      const newDataUrl = canvas.toDataURL('image/jpeg', 0.95);
+      const newDataUrl = canvas.toDataURL('image/jpeg', 0.92);
       setRotatedImage(newDataUrl);
       setRotation(normalizedRotation);
     };
