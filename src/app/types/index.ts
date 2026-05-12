@@ -1,5 +1,4 @@
 export type Step = 
-  | 'landing'
   | 'front-work'
   | 'back-work'
   | 'signature-work'
@@ -20,7 +19,6 @@ export interface CropData {
 }
 
 export const STEP_ORDER: Step[] = [
-  'landing',
   'front-work',
   'back-work',
   'signature-work',
@@ -28,10 +26,6 @@ export const STEP_ORDER: Step[] = [
 ];
 
 export const STEP_LABELS: Record<Step, { title: string; subtitle: string }> = {
-  'landing': { 
-    title: '', 
-    subtitle: '' 
-  },
   'front-work': { 
     title: 'Front Side', 
     subtitle: 'Upload, crop, and rotate the front of your ID' 
