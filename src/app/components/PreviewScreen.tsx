@@ -183,8 +183,8 @@ export function PreviewScreen({ frontImage, backImage, signature, onReset }: Pre
       }
       
       const link = document.createElement('a');
-      link.download = 'id-scans-a4.png';
-      link.href = canvasRef.current.toDataURL('image/png');
+      link.download = 'id-scans-a4.jpg';
+      link.href = canvasRef.current.toDataURL('image/jpeg', 0.75);
       link.click();
     } finally {
       setIsExporting(false);
@@ -209,7 +209,7 @@ export function PreviewScreen({ frontImage, backImage, signature, onReset }: Pre
         format: 'a4'
       });
       
-      const imgData = canvasRef.current.toDataURL('image/png');
+      const imgData = canvasRef.current.toDataURL('image/jpeg', 0.75);
       pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
       pdf.save('id-scans-a4.pdf');
     } catch (err) {
@@ -267,7 +267,7 @@ export function PreviewScreen({ frontImage, backImage, signature, onReset }: Pre
           Start Over
         </button>
         <button className={styles.exportBtn} onClick={handleExportPNG} disabled={isExporting || !loaded} aria-label={isExporting ? 'Exporting PNG' : 'Download as PNG'}>
-          {isExporting ? 'Exporting...' : 'Download PNG'}
+          {isExporting ? 'Exporting...' : 'Download JPG'}
         </button>
         <button className={styles.exportBtnPrimary} onClick={handleExportPDF} disabled={isExporting || !loaded} aria-label={isExporting ? 'Exporting PDF' : 'Download as PDF'}>
           Download PDF
