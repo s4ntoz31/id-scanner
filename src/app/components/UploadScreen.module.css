@@ -14,7 +14,7 @@
   background: 
     radial-gradient(ellipse at 50% 0%, rgba(202, 138, 4, 0.12) 0%, transparent 60%),
     hsl(var(--card));
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid hsl(var(--border));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,9 +27,9 @@
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(202, 138, 4, 0.3);
+  border-color: hsl(var(--accent));
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 20px 40px rgba(0, 0, 0, 0.2),
     0 0 60px rgba(202, 138, 4, 0.1);
 }
 
@@ -40,7 +40,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
 }
 
 .gradientOrb {
@@ -127,12 +127,12 @@
   gap: var(--space-sm);
   margin-top: var(--space-md);
   padding: 12px 24px;
-  background: rgba(202, 138, 0.15);
-  border: 1px solid rgba(202, 138, 4, 0.4);
+  background: hsl(var(--accent));
+  border: 1px solid hsl(var(--accent));
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 600;
-  color: #ffffff;
+  color: hsl(var(--accent-foreground));
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -140,7 +140,7 @@
 }
 
 .cameraBtn:hover {
-  background: rgba(202, 138, 4, 0.25);
+  opacity: 0.9;
   transform: translateY(-2px);
 }
 

@@ -21,7 +21,7 @@
   padding: 14px 24px;
   background: transparent;
   color: hsl(var(--muted-foreground));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid hsl(var(--border));
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 500;
@@ -31,7 +31,7 @@
 
 .skipBtnTop:hover {
   color: hsl(var(--foreground));
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: hsl(var(--accent));
 }
 
 .error {
@@ -53,7 +53,7 @@
   background: 
     radial-gradient(ellipse at 50% 0%, rgba(202, 138, 4, 0.05) 0%, transparent 50%),
     hsl(var(--card));
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid hsl(var(--border));
   border-radius: var(--radius-xl);
   overflow: hidden;
   position: relative;
@@ -113,9 +113,9 @@
   gap: 10px;
   min-width: 110px;
   padding: 16px 28px;
-  background: rgba(202, 138, 0.15);
-  color: #ffffff;
-  border: 1px solid rgba(202, 138, 4, 0.4);
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  border: 1px solid hsl(var(--accent));
   border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 600;
@@ -124,8 +124,7 @@
 }
 
 .rotateBtn:hover {
-  background: rgba(202, 138, 4, 0.2);
-  border-color: rgba(202, 138, 4, 0.4);
+  opacity: 0.9;
   transform: translateY(-2px);
 }
 
@@ -143,7 +142,7 @@
   padding: 16px 32px;
   background: transparent;
   color: hsl(var(--muted-foreground));
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid hsl(var(--border));
   border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 500;
@@ -152,16 +151,15 @@
 }
 
 .retakeBtn:hover {
-  border-color: hsl(var(--foreground));
+  border-color: hsl(var(--accent));
   color: hsl(var(--foreground));
-  background: rgba(255, 255, 255, 0.05);
 }
 
 .skipBtn {
   padding: 16px 24px;
   background: transparent;
   color: hsl(var(--muted-foreground));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid hsl(var(--border));
   border-radius: var(--radius-full);
   font-size: 0.9rem;
   font-weight: 500;
@@ -171,7 +169,7 @@
 
 .skipBtn:hover {
   color: hsl(var(--foreground));
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: hsl(var(--accent));
 }
 
 .doneBtn {

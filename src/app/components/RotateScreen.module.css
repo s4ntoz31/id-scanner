@@ -14,7 +14,7 @@
   background: 
     radial-gradient(ellipse at 50% 0%, rgba(202, 138, 4, 0.05) 0%, transparent 50%),
     hsl(var(--card));
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid hsl(var(--border));
   border-radius: var(--radius-xl);
   overflow: hidden;
   position: relative;

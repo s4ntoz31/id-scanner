@@ -20,11 +20,11 @@
   height: 64px;
   border-radius: 20px;
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid hsl(var(--border));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.9);
+  color: hsl(var(--foreground));
   margin-bottom: 20px;
 }
 
@@ -32,34 +32,34 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.75rem;
   font-weight: 500;
-  color: white;
+  color: hsl(var(--foreground));
   margin-bottom: 8px;
 }
 
 .subtitle {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: hsl(var(--muted-foreground));
   margin-bottom: 28px;
 }
 
 .dropZone {
   width: 100%;
   padding: 40px 24px;
-  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border: 2px dashed hsl(var(--border));
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.02);
+  background: hsl(var(--muted));
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: rgba(255, 255, 255, 0.5);
+  color: hsl(var(--muted-foreground));
 }
 
 .dropZone:hover {
-  border-color: rgba(99, 102, 241, 0.5);
-  background: rgba(99, 102, 241, 0.05);
+  border-color: hsl(var(--accent));
+  background: hsl(var(--secondary));
 }
 
 .input {
@@ -93,8 +93,8 @@
   margin-top: 20px;
   padding: 12px 24px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: hsl(var(--muted-foreground));
+  border: 1px solid hsl(var(--border));
   border-radius: 12px;
   font-size: 0.9rem;
   cursor: pointer;
@@ -102,8 +102,8 @@
 }
 
 .skipBtn:hover {
-  color: rgba(255, 255, 255, 0.8);
-  border-color: rgba(255, 255, 255, 0.2);
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--accent));
 }
 
 .preview {
@@ -117,7 +117,7 @@
   max-width: 200px;
   max-height: 80px;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.05);
+  background: hsl(var(--muted));
   border-radius: 12px;
   padding: 12px;
 }
@@ -136,8 +136,8 @@
 .changeBtn {
   padding: 10px 20px;
   background: transparent;
-  color: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: hsl(var(--muted-foreground));
+  border: 1px solid hsl(var(--border));
   border-radius: 12px;
   font-size: 0.85rem;
   cursor: pointer;
@@ -145,8 +145,8 @@
 }
 
 .changeBtn:hover {
-  color: white;
-  border-color: rgba(255, 255, 255, 0.3);
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--accent));
 }
 
 .continueBtn {
